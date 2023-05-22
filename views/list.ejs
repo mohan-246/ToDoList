@@ -9,15 +9,17 @@
 </head>
 <body>
     <div class="box" id="heading">
-        <h1>Its <%= dayy %></h1>
+        <h1><%= dayy %></h1>
     </div>
     <div class="box">
-        <% for(var i=0;i<taskk.length;i++){%>
+        <% taskk.forEach(function (task){%>
+            <form action="/delete" method="post">
         <div class="item" > 
-            <input type="checkbox">
-             <p><%= taskk[i] %></p> 
+            <input type="checkbox" name="checkbox" value="<%= task._id%>" onChange="this.form.submit()">
+             <p><%= task.task %></p> 
               </div>
-            <%}%>
+            </form>
+            <%});%>
             <form class="item" action="/" method="POST">
                 <input  type="text" name="newtask" placeholder="New item" autocomplete="off">
                 <button type="submit" name="submit">+</button>
